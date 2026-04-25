@@ -1,0 +1,262 @@
+body {
+  margin: 0;
+  height: 100vh;
+
+  background: linear-gradient(135deg, #EB478D, #B354FB);
+  background-size: 200% 200%;
+  animation: bgMove 6s ease infinite;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden;
+
+  transition: background 1.8s ease;
+}
+
+/* Animated background motion */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.screen {
+    display: none;
+    text-align: center;
+}
+
+.active {
+    display: block;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #764ba2;
+    cursor: pointer;
+    font-size: 1em;
+
+    /* Smooth press effect */
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    box-shadow: 0 6px 0 #d1d1d1;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 0 #d1d1d1;
+}
+
+button:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #d1d1d1;
+}
+
+button {
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* removes blue tap flash on mobile */
+}
+
+@keyframes fade {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+.fade {
+    animation: fade 1s ease;
+}
+
+.card {
+    padding: 25px 35px;
+    border-radius: 20px;
+
+    /* glass effect */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+
+    /* subtle border */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    /* depth */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+
+    text-align: center;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.card p {
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+.card {
+    max-width: 300px;
+}
+
+.hearts {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* so it doesn't block clicks */
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    bottom: -20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 20px;
+    animation: floatUp linear forwards;
+}
+
+/* animation */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* ROSE */
+.rose {
+    position: relative;
+    width: 120px;
+    height: 180px;
+    margin: 30px auto;
+}
+
+/* PETALS (base) */
+.petal {
+    position: absolute;
+    width: 40px;
+    height: 70px;
+    z-index: 2;
+
+    background: radial-gradient(circle at 40% 30%, #ff8fa3, #d6336c);
+    border-radius: 60% 60% 50% 50%;
+
+    transform-origin: bottom center;
+    transform: scale(0.3) rotate(0deg);
+
+    box-shadow: inset -4px -6px 8px rgba(0,0,0,0.12);
+}
+
+/* BLOOM AND SWAY*/
+.rose.bloom .petal {
+    animation: 
+        bloom 3s ease-in-out forwards,
+        petalSway 3s ease-in-out infinite; 
+}
+
+/* petal angles */
+.p1 { --r: 0deg; }
+.p2 { --r: -25deg; }
+.p3 { --r: 25deg; }
+.p4 { --r: -45deg; }
+.p5 { --r: 45deg; }
+
+/* bloom delays */
+.p1 { animation-delay: 0.1s, 0s; }
+.p2 { animation-delay: 0.2s, 0.8s; }
+.p3 { animation-delay: 0.2s, 1.6s; }
+.p4 { animation-delay: 0.3s, 2.2s; }
+.p5 { animation-delay: 0.3s, 3s; }
+
+.p1 { top: 10px; left: 40px; z-index: 5; }
+.p2 { top: 20px; left: 28px; z-index: 4; }
+.p3 { top: 20px; left: 52px; z-index: 4; }
+.p4 { top: 30px; left: 18px; z-index: 3; }
+.p5 { top: 30px; left: 62px; z-index: 3; }
+
+.p1 { animation-duration: 1s, 5s; }
+.p2 { animation-duration: 1s, 4s; }
+.p3 { animation-duration: 1s, 6s; }
+.p4 { animation-duration: 1s, 3.5s; }
+.p5 { animation-duration: 1s, 5.5s; }
+
+/* BLOOM animation */
+@keyframes bloom {
+    0% {
+        transform: scale(0.3) rotate(0deg);
+    }
+    70% {
+        transform: scale(1.15) rotate(var(--r));
+    }
+    100% {
+        transform: scale(1) rotate(var(--r));
+    }
+}
+
+/* SWAY (ONLY ON GROUP) */
+.petal-group {
+    transform-origin: bottom center;
+}
+
+/* sway animation */
+@keyframes petalSway {
+    0%   { transform: rotate(var(--r)) scale(1); }
+    50%  { transform: rotate(calc(var(--r) + 2deg)) scale(1.02); }
+    100% { transform: rotate(var(--r)) scale(1); }
+}
+
+/* LEAVES */
+.leaf {
+    position: absolute;
+    width: 42px;
+    height: 20px;
+    z-index: 5;
+
+    background: linear-gradient(135deg, #52b788, #2d6a4f);
+    border-radius: 100% 0 100% 0;
+
+    box-shadow: inset -2px -2px 5px rgba(0,0,0,0.15);
+}
+
+/* LEFT leaf */
+.leaf-left {
+    bottom: 72px;
+    left: 50%;
+    transform: translateX(-35px) rotate(-30deg);
+}
+
+/* RIGHT leaf */
+.leaf-right {
+    bottom: 72px;
+    left: 50%;
+    transform: translateX(-7px) rotate(30deg) scaleX(-1);
+}
+
+/* STEM */
+.stem {
+    position: absolute;
+    width: 6px;
+    height: 90px;
+    background: linear-gradient(#2F6D51, #226649);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+}
