@@ -288,7 +288,7 @@ button {
 }
 
 .card {
-    animation: cardFade 2.5s ease;
+    animation: cardFade 3s ease;
 }
 
 @keyframes cardFade {
