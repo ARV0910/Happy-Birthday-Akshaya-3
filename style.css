@@ -306,3 +306,18 @@ button {
     transform: translateZ(0);
     will-change: backdrop-filter;
 }
+
+.card {
+    animation: cardFade 2.5s ease;
+}
+
+@keyframes cardFade {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

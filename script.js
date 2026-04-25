@@ -15,7 +15,7 @@ function next(n){
 if (n === 5) {
     setTimeout(() => {
         document.querySelector(".rose").classList.add("bloom");
-    }, 200);
+    }, 400);
 }
 }
 
