@@ -25,16 +25,11 @@ body {
 }
 
 .screen {
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    transition: opacity 0.3s ease;
+    display: none;
 }
 
 .active {
-    opacity: 1;
-    pointer-events: auto;
-    position: relative;
+    display: block;
 }
 
 button {
