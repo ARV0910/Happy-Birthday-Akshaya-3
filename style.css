@@ -25,12 +25,16 @@ body {
 }
 
 .screen {
-    display: none;
-    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity 0.3s ease;
 }
 
 .active {
-    display: block;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
 }
 
 button {
@@ -298,4 +302,12 @@ button {
     100% {
         transform: translateY(120vh) rotate(360deg); /* go beyond screen */
     }
+}
+
+.card {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transform: translateZ(0);
+    will-change: backdrop-filter;
 }
