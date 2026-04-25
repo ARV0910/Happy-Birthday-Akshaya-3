@@ -147,7 +147,7 @@ button {
     margin: 30px auto;
 }
 
-/* PETALS (base) */
+/* PETALS */
 .petal {
     position: absolute;
     width: 40px;
@@ -158,67 +158,47 @@ button {
     border-radius: 60% 60% 50% 50%;
 
     transform-origin: bottom center;
-    transform: scale(0.3) rotate(0deg);
+
+    /* CLOSED BUD STATE */
+    transform: rotate(0deg);
 
     box-shadow: inset -4px -6px 8px rgba(0,0,0,0.12);
 }
 
-/* BLOOM AND SWAY*/
-.rose.bloom .petal {
-    animation: 
-        bloom 3s ease-in-out forwards,
-        petalSway 3s ease-in-out infinite; 
-}
-
-/* petal angles */
+/* FINAL ANGLES */
 .p1 { --r: 0deg; }
 .p2 { --r: -25deg; }
 .p3 { --r: 25deg; }
 .p4 { --r: -45deg; }
 .p5 { --r: 45deg; }
 
-/* bloom delays */
-.p1 { animation-delay: 0.1s, 0s; }
-.p2 { animation-delay: 0.2s, 0.8s; }
-.p3 { animation-delay: 0.2s, 1.6s; }
-.p4 { animation-delay: 0.3s, 2.2s; }
-.p5 { animation-delay: 0.3s, 3s; }
+/* POSITIONING (tight bud) */
+.p1 { top: 18px; left: 40px; z-index: 5; }
+.p2 { top: 22px; left: 36px; z-index: 4; }
+.p3 { top: 22px; left: 44px; z-index: 4; }
+.p4 { top: 26px; left: 32px; z-index: 3; }
+.p5 { top: 26px; left: 48px; z-index: 3; }
 
-.p1 { top: 10px; left: 40px; z-index: 5; }
-.p2 { top: 20px; left: 28px; z-index: 4; }
-.p3 { top: 20px; left: 52px; z-index: 4; }
-.p4 { top: 30px; left: 18px; z-index: 3; }
-.p5 { top: 30px; left: 62px; z-index: 3; }
+/* BLOOM ONLY (no scale) */
+.rose.bloom .petal {
+    animation: bloom 1.8s ease-in-out forwards;
+}
 
-.p1 { animation-duration: 1s, 5s; }
-.p2 { animation-duration: 1s, 4s; }
-.p3 { animation-duration: 1s, 6s; }
-.p4 { animation-duration: 1s, 3.5s; }
-.p5 { animation-duration: 1s, 5.5s; }
+/* STAGGER */
+.p1 { animation-delay: 0.1s; }
+.p2 { animation-delay: 0.25s; }
+.p3 { animation-delay: 0.4s; }
+.p4 { animation-delay: 0.55s; }
+.p5 { animation-delay: 0.7s; }
 
-/* BLOOM animation */
+/* BLOOM ANIMATION */
 @keyframes bloom {
     0% {
-        transform: scale(0.3) rotate(0deg);
-    }
-    70% {
-        transform: scale(1.15) rotate(var(--r));
+        transform: rotate(0deg) translateY(5px);
     }
     100% {
-        transform: scale(1) rotate(var(--r));
+        transform: rotate(var(--r)) translateY(0);
     }
-}
-
-/* SWAY (ONLY ON GROUP) */
-.petal-group {
-    transform-origin: bottom center;
-}
-
-/* sway animation */
-@keyframes petalSway {
-    0%   { transform: rotate(var(--r)) scale(1); }
-    50%  { transform: rotate(calc(var(--r) + 2deg)) scale(1.02); }
-    100% { transform: rotate(var(--r)) scale(1); }
 }
 
 /* LEAVES */
@@ -236,14 +216,14 @@ button {
 
 /* LEFT leaf */
 .leaf-left {
-    bottom: 72px;
+    bottom: 63px;
     left: 50%;
     transform: translateX(-35px) rotate(-30deg);
 }
 
 /* RIGHT leaf */
 .leaf-right {
-    bottom: 72px;
+    bottom: 63px;
     left: 50%;
     transform: translateX(-7px) rotate(30deg) scaleX(-1);
 }
