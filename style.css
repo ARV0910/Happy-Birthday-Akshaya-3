@@ -115,6 +115,13 @@ button:active {
     font-size: 1.2rem;
 }
 
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;   /* 🔥 adds spacing between elements */
+}
+
 /* MOBILE BOOST */
 @media (max-width: 600px) {
     .card {
@@ -132,10 +139,10 @@ button:active {
     }
 
     button {
-        padding: 18px 36px;
-        font-size: 1.2rem;
-        margin-top: 30px;
-    }
+    padding: 18px 36px;
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
 }
 
 /* animation */
