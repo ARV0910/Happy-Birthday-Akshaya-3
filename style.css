@@ -67,6 +67,11 @@ button {
     font-size: clamp(0.9rem, 3.5vw, 1.1rem);
 }
 
+button {
+        padding: 14px 28px;
+        font-size: 1.05em;
+    }
+
 @keyframes fade {
     from { opacity: 0 }
     to { opacity: 1 }
@@ -77,24 +82,30 @@ button {
 }
 
 .card {
-    padding: 25px 35px;
+    width: min(95vw, 500px); /* bigger on mobile, capped on desktop */
+    padding: 40px 25px;
     border-radius: 20px;
 
     /* glass effect */
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
-    /* subtle border */
+    /* performance + fix blur glitch */
+    transform: translateZ(0);
+    will-change: backdrop-filter;
+
+    /* border + depth */
     border: 1px solid rgba(255, 255, 255, 0.2);
-
-    /* depth */
     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 
     text-align: center;
-}
 
-.card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* smooth appearance */
+    animation: cardFade 3s ease;
+
+    /* hover (desktop only feel) */
+    transition: transform 1s ease, box-shadow 1s ease;
 }
 
 .card:hover {
@@ -102,28 +113,48 @@ button {
     box-shadow: 0 12px 30px rgba(0,0,0,0.25);
 }
 
+.card h1 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+}
+
 .card p {
     margin: 8px 0;
     line-height: 1.4;
+    font-size: clamp(1rem, 3.5vw, 1.2rem);
 }
 
-.card {
-    width: min(90vw, 420px);   /* 🔥 responsive width */
-    padding: 30px 20px;
-    border-radius: 20px;
+/* MOBILE BOOST */
+@media (max-width: 600px) {
+    .card {
+        width: 95vw;
+        padding: 45px 25px;
+        border-radius: 25px;
+    }
 
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
+    .card h1 {
+        font-size: 2.2rem;
+    }
 
-    text-align: center;
+    .card p {
+        font-size: 1.2rem;
+    }
+
+    button {
+        padding: 16px 30px;
+        font-size: 1.1rem;
+    }
 }
 
-.card h1 {
-    font-size: clamp(1.4rem, 5vw, 2rem);
-}
-
-.card p {
-    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+/* animation */
+@keyframes cardFade {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hearts {
@@ -296,49 +327,5 @@ button {
     }
     100% {
         transform: translateY(120vh) rotate(360deg); /* go beyond screen */
-    }
-}
-
-.card {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    transform: translateZ(0);
-    will-change: backdrop-filter;
-}
-
-.card {
-    animation: cardFade 3s ease;
-}
-
-@keyframes cardFade {
-    from {
-        opacity: 0;
-        transform: translateY(5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 600px) {
-    .card {
-        width: 90%;
-        padding: 30px 20px;
-        border-radius: 25px;
-    }
-
-    .card h1 {
-        font-size: 1.6em;
-    }
-
-    .card p {
-        font-size: 1em;
-    }
-
-    button {
-        padding: 14px 28px;
-        font-size: 1.05em;
     }
 }
